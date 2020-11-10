@@ -15,9 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace TestApp {
+namespace TurtleBot_App_UWP {
     public sealed partial class MainPage : Page {
-
         public static readonly string JAVAPATH = @"C:\Users\ryana\Documents\Test\";
         public static readonly string CODEPATH = @"Main.java";
         public static readonly string FILEPATH = @"Main.jar";
@@ -26,7 +25,7 @@ namespace TestApp {
             this.InitializeComponent();
         }
 
-		private async void RunButton_Click(object sender, RoutedEventArgs e) {
+        private async void RunButton_Click(object sender, RoutedEventArgs e) {
             try {
                 Debug.WriteLine("RunButton Clicked!");
 
@@ -41,8 +40,8 @@ namespace TestApp {
                     compiler.StartInfo.CreateNoWindow = true;
                     compiler.StartInfo.Arguments = input_path;
                     compiler.Start();
-                    compiler.WaitForExit(60000);
-				}
+                    compiler.WaitForExit(10000);
+                }
 
                 Debug.WriteLine("Done Compiling!");
 
@@ -50,8 +49,7 @@ namespace TestApp {
                 //Debug.WriteLine("Done!");
             } catch (Exception ex) {
                 Debug.WriteLine(ex.Message);
-			}
+            }
         }
-
-	}
+    }
 }

@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="927c99fd-5add-4e5f-9060-cfeed043a57d"
+    Name="ab196601-cf9f-40e3-876f-527b158c0eaa"
     Publisher="CN=ryana"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="927c99fd-5add-4e5f-9060-cfeed043a57d" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="ab196601-cf9f-40e3-876f-527b158c0eaa" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>App</DisplayName>
+    <DisplayName>TurtleBot-App-UWP</DisplayName>
     <PublisherDisplayName>ryana</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -30,23 +30,20 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="App.App">
+      EntryPoint="TurtleBot_App_UWP.App">
       <uap:VisualElements
-        DisplayName="TurtleBot"
+        DisplayName="TurtleBot-App-UWP"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="App"
+        Description="TurtleBot-App-UWP"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
-        <uap:InitialRotationPreference>
-          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
     <Capability Name="internetClient" />
-    <DeviceCapability Name="bluetooth"/>
   </Capabilities>
 </Package>

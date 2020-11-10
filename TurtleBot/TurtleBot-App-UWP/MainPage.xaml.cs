@@ -17,12 +17,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace TurtleBot_App_UWP {
     public sealed partial class MainPage : Page {
+
         public static readonly string JAVAPATH = @"C:\Users\ryana\Documents\Test\";
         public static readonly string CODEPATH = @"Main.java";
-        public static readonly string FILEPATH = @"Main.jar";
+        public static readonly string FILEPATH = @"Main.class";
 
         public MainPage() {
-            this.InitializeComponent();
+			this.InitializeComponent();
         }
 
         private async void RunButton_Click(object sender, RoutedEventArgs e) {
@@ -36,11 +37,11 @@ namespace TurtleBot_App_UWP {
 
                 using (Process compiler = new Process()) {
                     compiler.StartInfo.UseShellExecute = false;
-                    compiler.StartInfo.FileName = @"C:\Program Files\Java\jdk1.8.0_201\bin\javac.exe";
+                    compiler.StartInfo.FileName = "C:\\\"Program Files\"\\Java\\jdk1.8.0_201\\bin\\javac";
                     compiler.StartInfo.CreateNoWindow = true;
                     compiler.StartInfo.Arguments = input_path;
                     compiler.Start();
-                    compiler.WaitForExit(10000);
+                    compiler.WaitForExit();
                 }
 
                 Debug.WriteLine("Done Compiling!");
@@ -51,5 +52,6 @@ namespace TurtleBot_App_UWP {
                 Debug.WriteLine(ex.Message);
             }
         }
+
     }
 }

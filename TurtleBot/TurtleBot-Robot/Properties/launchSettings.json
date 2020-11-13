@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TurtleBot-Robot": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}

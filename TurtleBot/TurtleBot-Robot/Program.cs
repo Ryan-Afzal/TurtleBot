@@ -13,7 +13,7 @@ namespace TurtleBot_Robot {
 		private Process jarProcess;
 
 		public Program() {
-			this.javaPath = @"C:\Users\ryana\Documents\Test\Main.class";
+            this.javaPath = @"Main";
 			this.jarProcess = null;
 		}
 
@@ -32,13 +32,12 @@ namespace TurtleBot_Robot {
             Debug.WriteLine("Starting JVM...");
             Console.WriteLine("Starting JVM...");
             this.jarProcess = new Process();
-            this.jarProcess.StartInfo.UseShellExecute = false;
-            this.jarProcess.StartInfo.FileName = "C:\\\"Program Files\"\\Java\\jdk1.8.0_201\\bin\\java.exe";
+            this.jarProcess.StartInfo.FileName = "java";
             this.jarProcess.StartInfo.Arguments = this.javaPath;
-            //this.jarProcess.StartInfo.Verb = "runas";
-            //this.jarProcess.StartInfo.UseShellExecute = true;
+            this.jarProcess.StartInfo.Verb = "runas";
+            this.jarProcess.StartInfo.WorkingDirectory = @"C:\Users\ryana\Documents\Test";
             this.jarProcess.EnableRaisingEvents = true;
-            this.jarProcess.Exited += this.DisposeJarProcess;
+            this.jarProcess.Exited += new EventHandler(this.DisposeJarProcess);
             this.jarProcess.Start();
             Debug.WriteLine("JVM Started.");
             Console.WriteLine("JVM Started.");

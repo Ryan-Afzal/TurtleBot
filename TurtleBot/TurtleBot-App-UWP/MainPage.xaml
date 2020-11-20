@@ -10,9 +10,13 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="4*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -27,16 +31,43 @@
                 <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="JarPickButton" Grid.Row="2" Grid.Column="0" Click="JarPickButton_Click" Content="Pick .jar" />
-            <TextBlock x:Name="JarPickLabel" Grid.Row="2" Grid.Column="1" Text="N/A"/>
-            <Button x:Name="JarRunButton" Grid.Row="2" Grid.Column="2" Background="ForestGreen" Foreground="AntiqueWhite" Content="Run" Click="JarRunButton_Click" />
-            <Button x:Name="JarKillButton" Grid.Row="2" Grid.Column="3" Background="Red" Foreground="AntiqueWhite" Content="Kill JVM" Click="JarKillButton_Click" />
+            <Button x:Name="SourcePickButton" Grid.Row="2" Grid.Column="1" Click="SourcePickButton_Click"  Content="Pick source file" />
+            <TextBlock x:Name="SourcePickLabel" Grid.Row="2" Grid.Column="2" Text="N/A"/>
+            <Button x:Name="SourceRunButton" Grid.Row="2" Grid.Column="3" Background="ForestGreen" Foreground="AntiqueWhite" Content="Run" Click="SourceRunButton_Click" />
+            <Button x:Name="SourceKillButton" Grid.Row="2" Grid.Column="4" Background="Red" Foreground="AntiqueWhite" Content="Kill JavaC" Click="SourceKillButton_Click" />
         </Grid>
+
+
+
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="JarPickButton" Grid.Row="2" Grid.Column="1" Click="JarPickButton_Click" Content="Pick .jar" />
+            <TextBlock x:Name="JarPickLabel" Grid.Row="2" Grid.Column="2" Text="N/A"/>
+            <Button x:Name="JarRunButton" Grid.Row="2" Grid.Column="3" Background="ForestGreen" Foreground="AntiqueWhite" Content="Run" Click="JarRunButton_Click" />
+            <Button x:Name="JarKillButton" Grid.Row="2" Grid.Column="4" Background="Red" Foreground="AntiqueWhite" Content="Kill JVM" Click="JarKillButton_Click" />
+        </Grid>
+
+        <TextBlock x:Name="ProcessOutput" Grid.Row="5" Grid.Column="1" Text="" Height="250" />
     </Grid>
 </Page>

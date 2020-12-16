@@ -130,29 +130,37 @@ namespace TurtleBot_App_UWP {
         private void SourceRunButton_Click(object sender, RoutedEventArgs e) {
             Debug.WriteLine("Starting JavaC...");
 
+            // Create the process
             this.javacProcess = new Process();
             this.javacProcess.StartInfo.FileName = "javac";
-            this.javacProcess.StartInfo.Arguments = this.sourceFile;
-            this.javacProcess.StartInfo.WorkingDirectory = this.sourcePath;
+
+            // Set StartInfo properties, such as arguments
+            this.javacProcess.StartInfo.Arguments = @"C:\Users\ryana\Documents\Test\Main.java";
+            //this.javacProcess.StartInfo.Arguments = this.sourceFile;
+            //this.javacProcess.StartInfo.WorkingDirectory = this.sourcePath;
             this.javacProcess.StartInfo.Verb = "runas";
             this.javacProcess.StartInfo.RedirectStandardOutput = true;
             this.javacProcess.StartInfo.RedirectStandardError = true;
+
+            // Configure events
             this.javacProcess.EnableRaisingEvents = true;
-			this.javacProcess.OutputDataReceived += async (object e_sender, DataReceivedEventArgs e_e) => {// Big Chungus code sourced from a Microsoft C# help thread. 
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {   // It 'marshalls' the event to the thread the process is running on, 
-                    this.Output(e_sender, e_e);                       // or the other way around. I don't really know. 
+			this.javacProcess.OutputDataReceived += async (object e_sender, DataReceivedEventArgs e_e) => {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                    this.Output(e_sender, e_e);
                 });
             };
-            this.javacProcess.ErrorDataReceived += async (object e_sender, DataReceivedEventArgs e_e) => {// Big Chungus code sourced from a Microsoft C# help thread. 
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {   // It 'marshalls' the event to the thread the process is running on, 
-                    this.Output(e_sender, e_e);                       // or the other way around. I don't really know. 
+            this.javacProcess.ErrorDataReceived += async (object e_sender, DataReceivedEventArgs e_e) => {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                    this.Output(e_sender, e_e);
                 });
             };
-            this.javacProcess.Exited += async (object e_sender, EventArgs e_e) => {// Big Chungus code sourced from a Microsoft C# help thread. 
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {   // It 'marshalls' the event to the thread the process is running on, 
-                    this.DisposeJavacProcess(e_sender, e_e);                       // or the other way around. I don't really know. 
+            this.javacProcess.Exited += async (object e_sender, EventArgs e_e) => {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                    this.DisposeJavacProcess(e_sender, e_e);
                 });
             };
+
+            // Start the process
             this.javacProcess.Start();
             this.javacProcess.BeginOutputReadLine();
             this.javacProcess.BeginErrorReadLine();
@@ -230,19 +238,19 @@ namespace TurtleBot_App_UWP {
             this.jarProcess.StartInfo.RedirectStandardOutput = true;
             this.jarProcess.StartInfo.RedirectStandardError = true;
             this.jarProcess.EnableRaisingEvents = true;
-            this.jarProcess.OutputDataReceived += async (object e_sender, DataReceivedEventArgs e_e) => {// Big Chungus code sourced from a Microsoft C# help thread. 
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {   // It 'marshalls' the event to the thread the process is running on, 
-                    this.Output(e_sender, e_e);                       // or the other way around. I don't really know. 
+            this.jarProcess.OutputDataReceived += async (object e_sender, DataReceivedEventArgs e_e) => {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                    this.Output(e_sender, e_e);
                 });
             };
-            this.jarProcess.ErrorDataReceived += async (object e_sender, DataReceivedEventArgs e_e) => {// Big Chungus code sourced from a Microsoft C# help thread. 
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {   // It 'marshalls' the event to the thread the process is running on, 
-                    this.Output(e_sender, e_e);                       // or the other way around. I don't really know. 
+            this.jarProcess.ErrorDataReceived += async (object e_sender, DataReceivedEventArgs e_e) => {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                    this.Output(e_sender, e_e);
                 });
             };
-            this.jarProcess.Exited += async (object e_sender, EventArgs e_e) => {// Big Chungus code sourced from a Microsoft C# help thread. 
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { // It 'marshalls' the event to the thread the process is running on, 
-                    this.DisposeJarProcess(e_sender, e_e);                       // or the other way around. I don't really know. 
+            this.jarProcess.Exited += async (object e_sender, EventArgs e_e) => {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                    this.DisposeJarProcess(e_sender, e_e);
                 });
             };
             this.jarProcess.Start();

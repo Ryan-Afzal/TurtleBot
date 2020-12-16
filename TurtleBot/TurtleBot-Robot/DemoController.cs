@@ -14,7 +14,8 @@ namespace TurtleBot_Robot {
 	public class DemoController {
 
 		public async Task RunDemo(string filename) {
-			bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+			//bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+			bool isLinux = false;
 
 			Console.WriteLine("Checking Input Path...");
 			if (Path.IsPathFullyQualified(filename) && File.Exists(filename)) {

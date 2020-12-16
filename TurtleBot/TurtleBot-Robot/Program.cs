@@ -8,7 +8,7 @@ namespace TurtleBot_Robot {
 		public static async Task Main(string[] args) {
 			DemoController demo = new DemoController();
 
-			//string filename = "C:\\Users\\ryana\\Documents\\Test\\Main.java";
+			Console.WriteLine("Source File Path: ");
 			string filename = Console.ReadLine();
 
 			await demo.RunDemo(filename);

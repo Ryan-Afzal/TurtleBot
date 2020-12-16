@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace TurtleBot_Robot {
 	/// <summary>
@@ -13,6 +14,8 @@ namespace TurtleBot_Robot {
 	public class DemoController {
 
 		public async Task RunDemo(string filename) {
+			bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
 			Console.WriteLine("Checking Input Path...");
 			if (Path.IsPathFullyQualified(filename) && File.Exists(filename)) {
 				Console.WriteLine("Path is valid.");
@@ -24,11 +27,17 @@ namespace TurtleBot_Robot {
 					File.Delete(runtimeFile);
 				}
 
+				string prefix = "";
+
+				if (isLinux) {
+					prefix = "sudo";
+				}
+
 				Console.WriteLine("Compiling...");
 
 				using Process compiler = new Process() {
 					StartInfo = new ProcessStartInfo() {
-						FileName = "javac",
+						FileName = $"{prefix} javac",
 						Arguments = compileFile,
 						CreateNoWindow = false
 					},
@@ -46,7 +55,7 @@ namespace TurtleBot_Robot {
 
 					using Process runtime = new Process() {
 						StartInfo = new ProcessStartInfo() {
-							FileName = "java",
+							FileName = $"{prefix} java",
 							Arguments = Path.GetFileNameWithoutExtension(runtimeFile),
 							WorkingDirectory = Path.GetDirectoryName(runtimeFile),
 							//Verb = "runas",

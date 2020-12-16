@@ -14,9 +14,8 @@ namespace TurtleBot_Robot {
 	public class DemoController {
 
 		public async Task RunDemo(string filename) {
-			//bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
-			bool isLinux = false;
-
+			bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+			
 			Console.WriteLine("Checking Input Path...");
 			if (Path.IsPathFullyQualified(filename) && File.Exists(filename)) {
 				Console.WriteLine("Path is valid.");
@@ -28,17 +27,11 @@ namespace TurtleBot_Robot {
 					File.Delete(runtimeFile);
 				}
 
-				string prefix = "";
-
-				if (isLinux) {
-					prefix = "sudo";
-				}
-
 				Console.WriteLine("Compiling...");
 
 				using Process compiler = new Process() {
 					StartInfo = new ProcessStartInfo() {
-						FileName = $"{prefix} javac",
+						FileName = "javac",
 						Arguments = compileFile,
 						CreateNoWindow = false
 					},
@@ -56,10 +49,9 @@ namespace TurtleBot_Robot {
 
 					using Process runtime = new Process() {
 						StartInfo = new ProcessStartInfo() {
-							FileName = $"{prefix} java",
+							FileName = "java",
 							Arguments = Path.GetFileNameWithoutExtension(runtimeFile),
 							WorkingDirectory = Path.GetDirectoryName(runtimeFile),
-							//Verb = "runas",
 							CreateNoWindow = false
 						},
 						EnableRaisingEvents = true

@@ -20,6 +20,10 @@ namespace TurtleBot_Robot {
 				string compileFile = filename;
 				string runtimeFile = Path.ChangeExtension(filename, "class");
 
+				if (File.Exists(runtimeFile)) {
+					File.Delete(runtimeFile);
+				}
+
 				Console.WriteLine("Compiling...");
 
 				using Process compiler = new Process() {

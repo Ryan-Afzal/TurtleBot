@@ -23,7 +23,7 @@ namespace TurtleBot_Robot {
 				string compileFile = filename;
 				string runtimeFile = Path.ChangeExtension(filename, "class");
 
-				if (File.Exists(runtimeFile)) {
+				if (!isLinux && File.Exists(runtimeFile)) {
 					File.Delete(runtimeFile);
 				}
 

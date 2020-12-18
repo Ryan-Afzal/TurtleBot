@@ -8,9 +8,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 namespace TurtleBot_Robot {
-	/// <summary>
-	/// Controller class for the demo.
-	/// </summary>
 	public class DemoController {
 
 		public async Task RunDemo(string filename) {
@@ -29,38 +26,39 @@ namespace TurtleBot_Robot {
 
 				Console.WriteLine("Compiling...");
 
-				using Process compiler = new Process() {
-					StartInfo = new ProcessStartInfo() {
+				using (Process compiler = new Process()) {
+					compiler.StartInfo = new ProcessStartInfo() {
 						FileName = "javac",
 						Arguments = compileFile,
 						CreateNoWindow = false
-					},
-					EnableRaisingEvents = true
-				};
-				compiler.Disposed += (sender, e) => {
-					Console.WriteLine("[Compiler Process Disposed]");
-				};
-				compiler.Start();
-				await compiler.WaitForExitAsync();
+					};
+					compiler.EnableRaisingEvents = true;
+					compiler.Disposed += (sender, e) => {
+						Console.WriteLine("[Compiler Process Disposed]");
+					};
+					compiler.Start();
+					await compiler.WaitForExitAsync();
+				}
 
 				if (File.Exists(runtimeFile)) {
 					Console.WriteLine("Done Compiling!");
 					Console.WriteLine("Running...");
 
-					using Process runtime = new Process() {
-						StartInfo = new ProcessStartInfo() {
+					using (Process runtime = new Process()) {
+						runtime.StartInfo = new ProcessStartInfo() {
 							FileName = "java",
 							Arguments = Path.GetFileNameWithoutExtension(runtimeFile),
 							WorkingDirectory = Path.GetDirectoryName(runtimeFile),
 							CreateNoWindow = false
-						},
-						EnableRaisingEvents = true
-					};
-					runtime.Disposed += (sender, e) => {
-						Console.WriteLine("[Runtime Process Disposed]");
-					};
-					runtime.Start();
-					await runtime.WaitForExitAsync();
+						};
+						runtime.EnableRaisingEvents = true;
+						runtime.Disposed += (sender, e) => {
+							Console.WriteLine("[Runtime Process Disposed]");
+						};
+						runtime.Start();
+						await runtime.WaitForExitAsync();
+					}
+					
 
 					Console.WriteLine("Done!");
 				} else {

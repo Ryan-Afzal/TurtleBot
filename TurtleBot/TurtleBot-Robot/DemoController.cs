@@ -8,11 +8,13 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 namespace TurtleBot_Robot {
-	public class DemoController {
+	public class DemoController : IDemoController {
 
-		public async Task RunDemo(string filename) {
+		public async Task RunDemo() {
+			Console.WriteLine("Source File Path: ");
+			string filename = Console.ReadLine();
 			bool isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
-			
+
 			Console.WriteLine("Checking Input Path...");
 			if (Path.IsPathFullyQualified(filename) && File.Exists(filename)) {
 				Console.WriteLine("Path is valid.");
